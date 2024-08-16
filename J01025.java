@@ -15,5 +15,6 @@ public class J01025 {
         Arrays.sort(b);
         int e = Math.max(a[3] - a[0], b[3] - b[0]);
         System.out.println(e * e);
+        sc.close();
     }
 }
