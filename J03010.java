@@ -1,13 +1,15 @@
-import java.util.Scanner;
-import java.util.Vector;
+import java.util.*;
 
-public class J03005 {
+public class J03010 {
 
     public static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
         int t = sc.nextInt();
         sc.nextLine();
+
+        Map<String, Integer> mp = new HashMap<String, Integer>();
+
         while (t-- > 0) {
             String s = sc.nextLine();
             Vector<String> v = new Vector<String>();
@@ -28,15 +30,21 @@ public class J03005 {
                 v.add(k);
             }
 
-            for (int i = 1; i < v.size(); i++) {
-                String res = v.get(i);
-                System.out.print(res.substring(0, 1).toUpperCase() + res.substring(1));
-                if (i < v.size() - 1) {
-                    System.out.print(" ");
-                }
+            int x = v.size();
+            String res = v.get(x - 1);
+            for (int i = 0; i < x - 1; i++) {
+                res += v.get(i).substring(0, 1);
             }
-            String x = v.get(0);
-            System.out.println(", " + x.toUpperCase());
+            if (mp.get(res) == null) {
+                mp.put(res, 1);
+                k = "";
+            } else {
+                int count = mp.get(res);
+                count++;
+                k = Integer.toString(count);
+                mp.put(res, count);
+            }
+            System.out.println(res + k + "@ptit.edu.vn");
         }
     }
 }
