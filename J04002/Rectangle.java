@@ -32,7 +32,7 @@ public class Rectangle {
     }
 
     public String getColor() {
-        return color;
+        return color.substring(0, 1).toUpperCase() + color.substring(1).toLowerCase();
     }
 
     public void setColor(String color) {
