@@ -6,7 +6,7 @@ public class B10 {
     public static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        int n = sc.nextInt();
+        sc.nextInt();
         sc.nextLine();
         String s = sc.nextLine();
         int x = 0, d = 0, m = 0, xd = 0, dx = 0;

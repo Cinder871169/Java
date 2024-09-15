@@ -75,7 +75,7 @@ public class B12 {
         Arrays.sort(p);
         for (Phim i : p) {
             {
-                System.out.println(p);
+                System.out.println(i);
             }
         }
     }
