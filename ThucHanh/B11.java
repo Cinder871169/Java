@@ -1,28 +1,36 @@
 package ThucHanh;
 
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class B11 {
+    public static boolean check(String x) {
+        if (x.length() != 8)
+            return false;
+        if (x.charAt(2) != ':' || x.charAt(5) != ':')
+            return false;
+        for (int i = 0; i < 8; i++) {
+            if (i != 2 && i != 5 && !Character.isDigit(x.charAt(i)))
+                return false;
+        }
+        int h = Integer.parseInt(x.substring(0, 2));
+        int m = Integer.parseInt(x.substring(3, 5));
+        int s = Integer.parseInt(x.substring(6, 8));
+        return h < 24 && m < 60 && s < 60;
+    }
+
     public static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Set<String> se = new HashSet<>();
-        Pattern t = Pattern.compile("(?:[01]\\d|2[0-3]):[0-5]\\d:([0-5]\\d)");
+        Set<String> se = new TreeSet<String>();
         while (sc.hasNextLine()) {
-            while (sc.hasNextLine()) {
-                String s = sc.nextLine();
-                Matcher m = t.matcher(s);
-                while (m.find()) {
-                    se.add(m.group());
-                }
-            }
-            ArrayList<String> timeList = new ArrayList<>(se);
-            Collections.sort(timeList);
-            for (String it : timeList) {
-                System.out.println(it);
+            String s = sc.nextLine();
+            String[] x = s.split("\\s|\\.|\\,");
+            for (String it : x) {
+                if (check(it))
+                    se.add(it);
             }
         }
+        for (String i : se)
+            System.out.println(i);
     }
 }
