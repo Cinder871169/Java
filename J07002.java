@@ -1,23 +1,20 @@
-package Contest;
+import java.io.*;
+import java.util.*;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
-public class tinhtong {
-
+public class J07002 {
     public static void main(String[] args) throws FileNotFoundException {
         Scanner sc = new Scanner(new File("DATA.in"));
-        long sum = 0;
+        long res = 0;
         while (sc.hasNext()) {
             String s = sc.next();
             try {
-                sum += Integer.parseInt(s);
+                int x = Integer.parseInt(s);
+                res += x;
             } catch (Exception e) {
 
             }
         }
-        System.out.println(sum);
+        System.out.println(res);
         sc.close();
     }
 }

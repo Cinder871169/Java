@@ -8,5 +8,6 @@ public class J07001 {
         while (sc.hasNext()) {
             System.out.println(sc.nextLine());
         }
+        sc.close();
     }
 }

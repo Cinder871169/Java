@@ -12,6 +12,7 @@ public class J07029 {
         return n > 1;
     }
 
+    @SuppressWarnings("unchecked")
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         ObjectInputStream in = new ObjectInputStream(new FileInputStream("DATA.in"));
         ArrayList<Integer> l = (ArrayList<Integer>) in.readObject();
@@ -28,5 +29,6 @@ public class J07029 {
                     break;
             }
         }
+        in.close();
     }
 }

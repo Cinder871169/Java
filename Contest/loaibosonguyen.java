@@ -10,7 +10,7 @@ public class loaibosonguyen {
         while (sc.hasNext()) {
             String s = sc.next();
             try {
-                int n = Integer.valueOf(s);
+                Integer.valueOf(s);
             } catch (NumberFormatException e) {
                 list.add(s);
             }
@@ -19,5 +19,6 @@ public class loaibosonguyen {
         for (String i : list) {
             System.out.print(i + " ");
         }
+        sc.close();
     }
 }

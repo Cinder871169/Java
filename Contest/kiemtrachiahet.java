@@ -23,5 +23,6 @@ public class kiemtrachiahet {
                 System.out.println("None");
             }
         }
+        sc.close();
     }
 }

@@ -13,6 +13,7 @@ public class J07015 {
         return n > 1;
     }
 
+    @SuppressWarnings("unchecked")
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         ObjectInputStream in = new ObjectInputStream(new FileInputStream("SONGUYEN.in"));
         ArrayList<Integer> list = (ArrayList<Integer>) in.readObject();
@@ -25,5 +26,6 @@ public class J07015 {
                 System.out.print(i + " " + a[i]);
             }
         }
+        in.close();
     }
 }
