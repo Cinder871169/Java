@@ -13,6 +13,7 @@ public class docfilenp {
         return n > 1;
     }
 
+    @SuppressWarnings("unchecked")
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         ObjectInputStream in = new ObjectInputStream(new FileInputStream("DAYSO.DAT"));
         ArrayList<Integer> list = (ArrayList<Integer>) in.readObject();
