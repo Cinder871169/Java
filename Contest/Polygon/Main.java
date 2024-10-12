@@ -17,5 +17,6 @@ public class Main {
             Polygon poly = new Polygon(p);
             System.out.println(poly.getArea());
         }
+        in.close();
     }
 }

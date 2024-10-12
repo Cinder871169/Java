@@ -29,5 +29,6 @@ public class tangdangiamdan {
             }
             System.out.println();
         }
+        sc.close();
     }
 }

@@ -42,5 +42,6 @@ public class lietkevadem {
         for (Map.Entry<String, Integer> entry : resultList) {
             System.out.println(entry.getKey() + " " + entry.getValue());
         }
+        scanner.close();
     }
 }

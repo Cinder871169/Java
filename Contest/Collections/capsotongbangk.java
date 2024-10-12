@@ -29,5 +29,6 @@ public class capsotongbangk {
             }
             System.out.println(res / 2);
         }
+        sc.close();
     }
 }

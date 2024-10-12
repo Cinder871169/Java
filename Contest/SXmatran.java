@@ -34,5 +34,6 @@ public class SXmatran {
             sapXepCot(x, k);
             System.out.println(x);
         }
+        sc.close();
     }
 }

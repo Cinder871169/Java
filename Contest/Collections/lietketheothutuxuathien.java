@@ -5,6 +5,7 @@ import java.util.*;
 
 public class lietketheothutuxuathien {
 
+    @SuppressWarnings("unchecked")
     public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
         ObjectInputStream in = new ObjectInputStream(new FileInputStream("NHIPHAN.in"));
         List<String> list = (ArrayList<String>) in.readObject();
@@ -22,5 +23,7 @@ public class lietketheothutuxuathien {
                 se.remove(s);
             }
         }
+        in.close();
+        sc.close();
     }
 }
