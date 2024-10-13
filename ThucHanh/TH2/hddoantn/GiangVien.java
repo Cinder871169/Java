@@ -6,5 +6,4 @@ public class GiangVien {
     private String msv;
     private String detai;
 
-    public GiangVien(String ten, int sl, String )
 }
