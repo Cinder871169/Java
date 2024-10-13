@@ -1,4 +1,4 @@
-package Contest.Polygon;
+package ThucHanh.TH2.Polygon;
 
 public class Point {
     private int x, y;

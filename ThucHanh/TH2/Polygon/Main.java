@@ -1,4 +1,4 @@
-package Contest.Polygon;
+package ThucHanh.TH2.Polygon;
 
 import java.io.File;
 import java.io.FileNotFoundException;
