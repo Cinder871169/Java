@@ -1,55 +1,89 @@
 package ThucHanh.TH2.baocaothuctapcoso;
 
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws FileNotFoundException {
-        ArrayList<SinhVien> s = new ArrayList<>();
-        Scanner sc = new Scanner(new File("SINHVIEN.in"));
+    public static void main(String[] args) {
+        try {
+            ArrayList<SinhVien> sinhVienList = readSinhVienData("SINHVIEN.in");
+            ArrayList<DeTai> deTaiList = readDeTaiData("DETAI.in");
+            ArrayList<ArrayList<NhiemVu>> hoiDongList = readHoidongData("HOIDONG.in", sinhVienList, deTaiList);
+
+            printHoidong(hoiDongList);
+        } catch (FileNotFoundException e) {
+            System.err.println("Error: File not found.");
+            e.printStackTrace();
+        }
+    }
+
+    private static ArrayList<SinhVien> readSinhVienData(String fileName) throws FileNotFoundException {
+        ArrayList<SinhVien> sinhVienList = new ArrayList<>();
+        Scanner sc = new Scanner(new File(fileName));
         int n = Integer.parseInt(sc.nextLine());
         while (n-- > 0) {
-            s.add(new SinhVien(sc.nextLine(), sc.nextLine(), sc.nextLine(), sc.nextLine()));
+            sinhVienList.add(new SinhVien(sc.nextLine(), sc.nextLine(), sc.nextLine(), sc.nextLine()));
         }
         sc.close();
+        return sinhVienList;
+    }
 
-        ArrayList<DeTai> m = new ArrayList<>();
-        sc = new Scanner(new File("DETAI.in"));
-        n = Integer.parseInt(sc.nextLine());
+    private static ArrayList<DeTai> readDeTaiData(String fileName) throws FileNotFoundException {
+        ArrayList<DeTai> deTaiList = new ArrayList<>();
+        Scanner sc = new Scanner(new File(fileName));
+        int n = Integer.parseInt(sc.nextLine());
         while (n-- > 0) {
-            m.add(new DeTai(sc.nextLine(), sc.nextLine()));
+            deTaiList.add(new DeTai(sc.nextLine(), sc.nextLine()));
         }
         sc.close();
+        return deTaiList;
+    }
 
-        ArrayList<ArrayList<NhiemVu>> hoidong = new ArrayList<>(9);
+    private static ArrayList<ArrayList<NhiemVu>> readHoidongData(String fileName, ArrayList<SinhVien> sinhVienList,
+            ArrayList<DeTai> deTaiList) throws FileNotFoundException {
+        ArrayList<ArrayList<NhiemVu>> hoiDongList = new ArrayList<>(9);
         for (int i = 0; i < 9; i++) {
-            hoidong.add(new ArrayList<>());
+            hoiDongList.add(new ArrayList<>());
         }
-        sc = new Scanner(new File("HOIDONG.in"));
-        n = Integer.parseInt(sc.nextLine());
+
+        Scanner sc = new Scanner(new File(fileName));
+        int n = Integer.parseInt(sc.nextLine());
         while (n-- > 0) {
             String msv = sc.next();
             String detai = sc.next();
             String hdID = sc.next();
             int num = hdID.charAt(2) - '0';
-            NhiemVu nv = new NhiemVu(msv, hdID, hdID);
-            for (SinhVien i : s) {
-                if (i.getId().equals(msv)) {
-                    nv.setSv(i);
-                }
-            }
-            for (DeTai i : m) {
-                if (i.getId().equals(detai)) {
-                    nv.setMh(i);
-                }
-            }
-            hoidong.get(num).add(nv);
+            NhiemVu nv = new NhiemVu(msv, detai, hdID);
+            assignSinhVienAndDeTai(nv, sinhVienList, deTaiList);
+            hoiDongList.get(num).add(nv);
         }
+        sc.close();
+        return hoiDongList;
+    }
+
+    private static void assignSinhVienAndDeTai(NhiemVu nv, ArrayList<SinhVien> sinhVienList,
+            ArrayList<DeTai> deTaiList) {
+        for (SinhVien sv : sinhVienList) {
+            if (sv.getId().equals(nv.getMsv())) {
+                nv.setSv(sv);
+            }
+        }
+        for (DeTai dt : deTaiList) {
+            if (dt.getId().equals(nv.getSubjectID())) {
+                nv.setMh(dt);
+            }
+        }
+    }
+
+    private static void printHoidong(ArrayList<ArrayList<NhiemVu>> hoiDongList) {
         for (int i = 0; i < 9; i++) {
-            if (!hoidong.get(i).isEmpty()) {
-                Collections.sort(hoidong.get(i));
+            if (!hoiDongList.get(i).isEmpty()) {
+                Collections.sort(hoiDongList.get(i));
                 System.out.printf("DANH SACH HOI DONG %d:\n", i);
-                for (NhiemVu j : hoidong.get(i)) {
+                for (NhiemVu j : hoiDongList.get(i)) {
                     System.out.println(j);
                 }
             }

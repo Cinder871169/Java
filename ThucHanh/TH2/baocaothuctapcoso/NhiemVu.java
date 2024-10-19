@@ -13,6 +13,26 @@ public class NhiemVu implements Comparable<NhiemVu> {
         this.hdID = hdID;
     }
 
+    public String getMsv() {
+        return msv;
+    }
+
+    public String getSubjectID() {
+        return subjectID;
+    }
+
+    public String getHdID() {
+        return hdID;
+    }
+
+    public SinhVien getSv() {
+        return sv;
+    }
+
+    public DeTai getMh() {
+        return mh;
+    }
+
     public void setSv(SinhVien sv) {
         this.sv = sv;
     }
